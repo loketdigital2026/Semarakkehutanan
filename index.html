@@ -27,41 +27,45 @@
   --shadow-md:0 6px 18px rgba(20,24,36,.1);
   color-scheme:light;
 }
-*{box-sizing:border-box}
-a,button{-webkit-tap-highlight-color:transparent}
-body{margin:0;background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',Arial,Helvetica,sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;min-height:100vh}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;overflow-x:clip}
+body{margin:0;overflow-x:clip;background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',Arial,Helvetica,sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;min-height:100vh}
+img{max-width:100%;height:auto}
+a,button{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 .app{max-width:720px;margin:0 auto;min-height:100vh;padding-bottom:158px;position:relative;background:var(--bg);box-shadow:0 0 60px rgba(20,24,36,.06)}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 .topbar{position:sticky;top:0;z-index:30;height:var(--topbar-h);display:flex;align-items:center;gap:8px;padding:0 18px;background:#fff;border-bottom:1px solid #ececec;transition:box-shadow .25s var(--ease)}
 .topbar.scrolled{box-shadow:0 4px 14px rgba(20,24,36,.08)}
 .back{border:0;background:none;padding:0;width:42px;height:42px;margin-left:-8px;display:grid;place-items:center;color:var(--text);cursor:pointer;border-radius:10px;transition:background .2s var(--ease)}
 .back:focus-visible{outline:2px solid var(--primary);outline-offset:-2px}
-.topbar h1{margin:0;font-size:23px;font-weight:800;letter-spacing:-.01em}
+.topbar h1{margin:0;font-size:23px;font-weight:800;letter-spacing:-.01em;min-width:0}
 .content{padding:16px 16px 0}
 .hero{display:block;width:100%;height:auto;border-radius:var(--radius);background:#dfe5da;box-shadow:0 4px 18px rgba(20,24,36,.14)}
-.title-row{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:20px 2px 18px}
-.title-row h2{margin:0;font-size:24px;font-weight:800;letter-spacing:-.015em;line-height:1.25}
+.hero-ph{height:220px;aspect-ratio:auto;display:grid;place-items:center;color:var(--text-soft);font-size:15px;font-weight:700;text-align:center;padding:16px}
+.title-row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:20px 2px 18px}
+.title-row h2{margin:0;min-width:0;font-size:24px;font-weight:800;letter-spacing:-.015em;line-height:1.25;text-wrap:balance;overflow-wrap:break-word}
 .fav{flex:none;width:52px;height:52px;border-radius:50%;background:#fff;border:1px solid var(--border);display:grid;place-items:center;cursor:pointer;box-shadow:var(--shadow-sm);transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
 .fav:active{transform:scale(.94)}
 .fav:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
 .fav svg{width:24px;height:24px;fill:none;stroke:var(--text);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:fill .2s,stroke .2s}
 .fav[aria-pressed="true"] svg{fill:#e0245e;stroke:#e0245e}
 .meta{display:grid;gap:16px}
-.meta-row{display:grid;grid-template-columns:24px 1fr;gap:14px;align-items:start}
-.meta-row>svg{width:22px;height:22px;margin-top:2px;color:var(--text)}
-.meta-text{margin:0;font-size:16.5px;font-weight:500;line-height:1.5;color:var(--text)}
-.loc-marquee{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent)}
+.meta-row{display:grid;grid-template-columns:24px minmax(0,1fr);gap:14px;align-items:start}
+.meta-row>svg{width:22px;height:22px;margin-top:2px;color:var(--text);flex:none}
+.meta-text{margin:0;min-width:0;font-size:16.5px;font-weight:500;line-height:1.5;color:var(--text);overflow-wrap:break-word}
+.loc-marquee{overflow:hidden;max-width:100%;-webkit-mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent)}
 .loc-track{display:inline-flex;white-space:nowrap;will-change:transform;animation:marquee 32s linear infinite}
 .loc-track span{padding-right:56px;font-size:16.5px;font-weight:500}
 @keyframes marquee{to{transform:translateX(-50%)}}
-.directions{display:inline-block;margin-top:8px;color:var(--primary);font-weight:700;font-size:16px;text-decoration:none}
+.directions{display:inline-block;margin-top:4px;padding:7px 0;color:var(--primary);font-weight:700;font-size:16px;text-decoration:none}
 .directions:focus-visible{outline:2px solid var(--primary);outline-offset:2px;border-radius:4px}
 .organizer{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;border-top:1px solid var(--border);margin-top:20px;padding:18px 2px 22px}
 .organizer span{color:#9aa0ac;font-size:16px;font-weight:500}
-.organizer strong{font-size:17px;font-weight:800}
+.organizer strong{font-size:17px;font-weight:800;overflow-wrap:anywhere}
 .band{height:10px;background:#e2e5df}
-.tabs{position:sticky;top:var(--topbar-h);z-index:20;display:flex;gap:30px;padding:0 20px;background:#fff;border-bottom:1px solid #e7e9e4}
-.tab{appearance:none;border:0;background:none;font-family:inherit;font-size:17px;font-weight:700;color:var(--text);padding:18px 2px 15px;cursor:pointer;position:relative;white-space:nowrap;transition:color .2s var(--ease)}
+.tabs{position:sticky;top:var(--topbar-h);z-index:20;display:flex;gap:30px;padding:0 20px;background:#fff;border-bottom:1px solid #e7e9e4;overflow-x:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{appearance:none;border:0;background:none;font-family:inherit;font-size:17px;font-weight:700;color:var(--text);padding:18px 2px 15px;cursor:pointer;position:relative;white-space:nowrap;flex:none;transition:color .2s var(--ease)}
 .tab::after{content:'';position:absolute;left:0;right:0;bottom:-1px;height:4px;border-radius:4px 4px 0 0;background:var(--primary);transform:scaleX(0);transition:transform .25s var(--ease)}
 .tab.active{color:var(--primary)}
 .tab.active::after{transform:scaleX(1)}
@@ -69,21 +73,21 @@ body{margin:0;background:var(--bg);color:var(--text);font-family:'Plus Jakarta S
 .panel{display:none;padding:22px 2px 8px}
 .panel.active{display:block;animation:fade .35s var(--ease)}
 @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-.desc{margin:0;font-size:17px;line-height:1.9;color:var(--text-soft)}
+.desc{margin:0;font-size:17px;line-height:1.9;color:var(--text-soft);text-wrap:pretty;overflow-wrap:break-word}
 .social{display:grid;gap:12px;padding-bottom:10px}
-.social a{display:flex;align-items:center;gap:14px;padding:14px 16px;background:#fff;border:1px solid var(--border);border-radius:var(--radius);text-decoration:none;color:var(--text);box-shadow:var(--shadow-sm);transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
+.social a{display:flex;align-items:center;gap:14px;min-width:0;padding:14px 16px;background:#fff;border:1px solid var(--border);border-radius:var(--radius);text-decoration:none;color:var(--text);box-shadow:var(--shadow-sm);transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
 .social-icon{width:48px;height:48px;border-radius:12px;display:grid;place-items:center;flex:none}
 .social-icon svg{width:24px;height:24px;fill:#fff}
 .ig-icon{background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fd5949 45%,#d6249f 60%,#285AEB 90%)}
 .x-icon{background:#000}
-.social-text{display:flex;flex-direction:column;gap:1px}
+.social-text{display:flex;flex-direction:column;gap:1px;min-width:0}
 .social-text small{font-size:11.5px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
-.social-text span{font-size:15.5px;font-weight:700}
-.bottom{position:fixed;left:50%;transform:translateX(-50%);bottom:0;width:min(720px,100%);background:#fff;border-top:1px solid #e9ebe6;padding:14px 16px;padding-bottom:max(16px,env(safe-area-inset-bottom));z-index:40;box-shadow:0 -6px 24px rgba(20,24,36,.06)}
+.social-text span{font-size:15.5px;font-weight:700;overflow-wrap:anywhere}
+.bottom{position:fixed;left:0;right:0;bottom:0;margin:0 auto;width:100%;max-width:720px;background:#fff;border-top:1px solid #e9ebe6;padding:14px 16px;padding-bottom:max(16px,env(safe-area-inset-bottom));z-index:40;box-shadow:0 -6px 24px rgba(20,24,36,.06)}
 .buy{display:block;width:100%;border:0;border-radius:12px;background:var(--primary);color:#fff;font-family:inherit;font-size:19px;font-weight:800;padding:17px;text-align:center;text-decoration:none;cursor:pointer;transition:background .2s var(--ease),transform .2s var(--ease),box-shadow .2s var(--ease)}
 .buy:active{transform:scale(.99)}
 .buy:focus-visible{outline:2px solid var(--primary-dark);outline-offset:3px}
-.verify{margin:12px 0 0;text-align:center;font-size:14.5px;color:var(--text-soft)}
+.verify{margin:12px 0 0;text-align:center;font-size:14.5px;line-height:1.5;color:var(--text-soft)}
 .verify a{color:var(--primary);font-weight:700;text-decoration:none}
 @media (hover:hover){
   .back:hover{background:#f1f2ee}
@@ -101,6 +105,7 @@ body{margin:0;background:var(--bg);color:var(--text);font-family:'Plus Jakarta S
   .title-row h2{font-size:21px}
   .fav{width:48px;height:48px}
   .meta-text,.loc-track span{font-size:15.5px}
+  .tabs{gap:24px;padding:0 16px}
   .tab{font-size:16px;padding:15px 2px 13px}
   .panel{padding:18px 0 6px}
   .desc{font-size:16px}
@@ -116,6 +121,10 @@ body{margin:0;background:var(--bg);color:var(--text);font-family:'Plus Jakarta S
   .loc-track span:first-child{display:inline}
 }
 </style>
+<noscript><style>
+.panel{display:block!important}
+.back,.fav{display:none}
+</style></noscript>
 </head>
 <body>
 <div class="app">
@@ -128,7 +137,7 @@ body{margin:0;background:var(--bg);color:var(--text);font-family:'Plus Jakarta S
 
   <main>
     <div class="content">
-      <img class="hero" src="banner.png" alt="Banner Semarak Kehutanan 2026 — Rhythm of The Stage, 17 Oktober 2026, Grha Widya Wisuda IPB University" loading="eager" decoding="async" width="987" height="542" fetchpriority="high">
+      <img class="hero" id="hero" src="banner.png" alt="Banner Semarak Kehutanan 2026 — Rhythm of The Stage, 17 Oktober 2026, Grha Widya Wisuda IPB University" loading="eager" decoding="async" width="987" height="542" fetchpriority="high">
 
       <div class="title-row">
         <h2>Semarak Kehutanan 2026</h2>
@@ -247,6 +256,18 @@ fav.addEventListener('click',()=>{
   paintFav();
   try{localStorage.setItem(FAV_KEY,favOn?'1':'0')}catch(e){}
 });
+
+const hero=document.getElementById('hero');
+function heroFail(){
+  const ph=document.createElement('div');
+  ph.className='hero hero-ph';
+  ph.setAttribute('role','img');
+  ph.setAttribute('aria-label',hero.alt);
+  ph.textContent='Semarak Kehutanan 2026';
+  hero.replaceWith(ph);
+}
+if(hero.complete&&hero.naturalWidth===0)heroFail();
+else hero.addEventListener('error',heroFail,{once:true});
 
 document.getElementById('back').addEventListener('click',()=>{
   if(history.length>1)history.back();else location.href='index.html';
