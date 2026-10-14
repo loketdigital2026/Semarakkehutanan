@@ -29,7 +29,6 @@
   --amber:#b45309;--amber-soft:#fdf6e7;--amber-line:#ecd9a8;
   --radius:16px;--ease:cubic-bezier(.4,0,.2,1);
   --shadow-sm:0 1px 3px rgba(20,24,36,.07);
-  color-scheme:light;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;font-family:'Plus Jakarta Sans',Arial,Helvetica,sans-serif;-webkit-tap-highlight-color:transparent}
 button,input{-webkit-appearance:none;appearance:none;font:inherit;color:inherit}
@@ -42,10 +41,9 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(-
 
 .app-header{position:sticky;top:0;z-index:1000;background:#fff}
 .topbar{min-height:76px;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;background:#fff;border-bottom:1px solid #ececec}
-.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
-.logo-img{width:42px;height:42px;border-radius:12px;object-fit:cover;background:#fff;box-shadow:var(--shadow-sm)}
-.logo-text{height:32px;width:auto;object-fit:contain;border-radius:6px}
-.lang{padding:8px 13px;border-radius:999px;background:var(--bg);border:1px solid var(--border);font-size:12px;font-weight:700;color:var(--text-soft)}
+.logo{display:flex;align-items:center;min-width:0}
+.brand-logo{height:34px;width:auto;max-width:180px;object-fit:contain;border-radius:6px;display:block}
+.lang{padding:8px 13px;border-radius:999px;background:var(--bg);border:1px solid var(--border);font-size:12px;font-weight:700;color:var(--text-soft);flex:none}
 
 .progress{position:relative;padding:14px 28px 18px;background:var(--primary);overflow:hidden}
 .progress-track{position:absolute;top:26px;left:43px;right:43px;height:3px;background:rgba(255,255,255,.25);border-radius:999px;z-index:1}
@@ -98,7 +96,6 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(-
 .qris-frame::after{content:"";position:absolute;top:0;left:9%;right:9%;height:2px;background:linear-gradient(90deg,transparent,rgba(80,105,255,.5),transparent)}
 .qris-frame-glow{position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:210px;height:210px;background:radial-gradient(circle,rgba(43,63,208,.3),transparent 68%);pointer-events:none}
 .qris-frame-header{display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:14px;padding-bottom:12px;border-bottom:1px dashed rgba(255,255,255,.2);position:relative;z-index:1}
-.qris-frame-logo{width:25px;height:25px;border-radius:7px;object-fit:cover;background:#fff}
 .qris-frame-brand{font-size:18px;font-weight:800;letter-spacing:1px;color:#fff;text-shadow:0 2px 4px rgba(0,0,0,.2)}
 .qris-frame-body{text-align:center;position:relative;z-index:1}
 .qris-qr-wrap{display:inline-block;padding:9px;background:#fff;border:4px solid var(--primary);border-radius:12px;margin-bottom:12px;box-shadow:0 8px 22px rgba(43,63,208,.3);position:relative;overflow:hidden}
@@ -120,12 +117,12 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(-
 .scan-hint{margin:0 0 18px;font-size:11px;color:#7a8496;display:flex;align-items:center;justify-content:center;gap:6px}
 .scan-hint svg{width:14px;height:14px;color:var(--primary);flex:none}
 
-.upload-area{border:1.5px dashed #b7bfd0;border-radius:17px;padding:24px 16px;text-align:center;cursor:pointer;background:#fff;transition:border-color .25s var(--ease),box-shadow .25s var(--ease);display:block}
+.upload-area{border:1.5px dashed #b7bfd0;border-radius:17px;padding:24px 16px;text-align:center;cursor:pointer;background:#fff;transition:border-color .25s var(--ease),box-shadow .25s var(--ease);display:block;touch-action:manipulation}
 .upload-area:focus-within{border-color:var(--primary);box-shadow:0 0 0 3px rgba(43,63,208,.12)}
 .upload-icon{margin-bottom:9px;display:block;color:var(--primary)}
 .upload-icon svg{width:32px;height:32px}
-.upload-area h2{font-size:15px;font-weight:800;margin-bottom:5px}
-.upload-area p{font-size:11px;color:#7a8496;line-height:1.55}
+.upload-title{display:block;font-size:15px;font-weight:800;margin-bottom:5px}
+.upload-desc{display:block;font-size:11px;color:#7a8496;line-height:1.55}
 .upload-area .file-types{display:inline-flex;gap:5px;margin-top:7px}
 .upload-area .file-types span{background:var(--primary-soft);color:var(--primary);font-size:9px;font-weight:800;padding:3px 8px;border-radius:5px;letter-spacing:.5px}
 .sr-only-file{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
@@ -135,7 +132,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(-
 .preview .file-name{margin-top:9px;font-size:12px;font-weight:700;color:var(--primary);word-break:break-word}
 .preview .success-msg{margin-top:5px;font-weight:600;font-size:12px;color:var(--green);display:flex;align-items:center;gap:6px}
 .preview .success-msg svg{width:14px;height:14px;flex:none}
-.checkbox-wrap{margin-top:15px;display:flex;gap:10px;align-items:flex-start;background:#fafbf8;padding:11px;border-radius:11px;border:1px solid var(--border)}
+.checkbox-wrap{margin-top:15px;display:flex;gap:10px;align-items:flex-start;background:#fafbf8;padding:11px;border-radius:11px;border:1px solid var(--border);touch-action:manipulation}
 .checkbox-wrap input[type=checkbox]{width:19px;height:19px;min-width:19px;accent-color:var(--primary);cursor:pointer;margin-top:2px}
 .checkbox-wrap label{font-size:11px;line-height:1.5;color:#586274;cursor:pointer}
 .submit-btn{width:100%;padding:14px;border:0;border-radius:12px;font-weight:800;font-size:13px;cursor:pointer;background:var(--primary);color:#fff;transition:background .25s var(--ease),box-shadow .25s var(--ease);box-shadow:0 8px 20px rgba(43,63,208,.22);margin-top:15px;display:flex;justify-content:center;align-items:center;gap:8px;touch-action:manipulation;-webkit-user-select:none;user-select:none}
@@ -179,6 +176,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(-
 }
 @media (max-width:480px){.container{box-shadow:none}}
 @media (max-width:380px){
+  .brand-logo{height:30px;max-width:150px}
   .content{padding-left:14px;padding-right:14px}
   .progress{padding-left:15px;padding-right:15px}
   .progress-track{left:33px;right:33px}
@@ -197,12 +195,13 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(-
 </head>
 <body>
 
+<svg width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true" focusable="false"><defs><polyline id="ic-check" points="20 6 9 17 4 12"/></defs></svg>
+
 <div class="container">
   <header class="app-header">
     <div class="topbar">
       <a href="index.html" class="logo">
-        <img src="logo.png" alt="Logo Yesplis" class="logo-img" width="42" height="42">
-        <img src="logo.png" alt="Yesplis" class="logo-text">
+        <img src="logo.png" alt="Yesplis" class="brand-logo" decoding="async">
       </a>
       <div class="lang">🇮🇩 ID</div>
     </div>
@@ -211,19 +210,19 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(-
       <div class="progress-track" aria-hidden="true"><div class="progress-fill"></div></div>
       <ol class="progress-steps">
         <li class="step completed">
-          <div class="step-dot"><span class="step-num">1</span><svg class="step-check" viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="step-dot"><span class="step-num">1</span><svg class="step-check" viewBox="0 0 24 24" aria-hidden="true"><use href="#ic-check"/></svg></div>
           <span class="step-label">Pilih Tiket</span>
         </li>
         <li class="step completed">
-          <div class="step-dot"><span class="step-num">2</span><svg class="step-check" viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="step-dot"><span class="step-num">2</span><svg class="step-check" viewBox="0 0 24 24" aria-hidden="true"><use href="#ic-check"/></svg></div>
           <span class="step-label">Data Pembeli</span>
         </li>
         <li class="step active" aria-current="step">
-          <div class="step-dot"><span class="step-num">3</span><svg class="step-check" viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="step-dot"><span class="step-num">3</span><svg class="step-check" viewBox="0 0 24 24" aria-hidden="true"><use href="#ic-check"/></svg></div>
           <span class="step-label">Pembayaran</span>
         </li>
         <li class="step">
-          <div class="step-dot"><span class="step-num">4</span><svg class="step-check" viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="step-dot"><span class="step-num">4</span><svg class="step-check" viewBox="0 0 24 24" aria-hidden="true"><use href="#ic-check"/></svg></div>
           <span class="step-label">E-Ticket</span>
         </li>
       </ol>
@@ -261,7 +260,6 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(-
     <section class="qris-frame" aria-label="QRIS pembayaran">
       <div class="qris-frame-glow" aria-hidden="true"></div>
       <div class="qris-frame-header">
-        <img src="logo.png" alt="Logo Yesplis" class="qris-frame-logo" width="25" height="25" loading="lazy" decoding="async">
         <span class="qris-frame-brand">Yesplis</span>
       </div>
       <div class="qris-frame-body">
@@ -298,8 +296,8 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(-
           <span class="upload-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 13v8"/><path d="M4 14.9A7 7 0 1 1 15.7 8h1.8a4.5 4.5 0 0 1 2.5 8.2"/><path d="m8 17 4-4 4 4"/></svg>
           </span>
-          <h2>Upload Bukti Pembayaran</h2>
-          <p>Klik area ini untuk memilih bukti transfer QRIS</p>
+          <span class="upload-title">Upload Bukti Pembayaran</span>
+          <span class="upload-desc">Klik area ini untuk memilih bukti transfer QRIS</span>
           <span class="file-types"><span>JPG</span><span>PNG</span><span>JPEG</span></span>
         </span>
       </label>
@@ -334,13 +332,13 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(-
         <circle class="progress-ring-bg" cx="90" cy="90" r="80"></circle>
         <circle id="progressCircle" class="progress-ring-fill" cx="90" cy="90" r="80"></circle>
       </svg>
-      <div class="progress-percent" aria-live="polite">
+      <div class="progress-percent">
         <div class="num" id="progressNum">0</div>
         <div class="pct">%</div>
       </div>
     </div>
     <div class="loading-title">Memproses Pembayaran</div>
-    <div class="loading-subtitle" id="loadingSubtitle">Mohon tunggu, jangan tutup halaman ini...</div>
+    <div class="loading-subtitle" id="loadingSubtitle" aria-live="polite">Mohon tunggu, jangan tutup halaman ini...</div>
     <div class="loading-steps">
       <div class="step-item"><div class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="m9 12 2 2 4-4"/></svg></div><div class="step-text">Verifikasi keamanan transaksi</div></div>
       <div class="step-item"><div class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.1-3.1a2 2 0 0 0-2.8 0L6 21"/></svg></div><div class="step-text">Validasi bukti pembayaran</div></div>
@@ -358,12 +356,13 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(-
 
 const PAYMENT_DURATION=180;
 const LOADING_DURATION=180000;
+const DOM_UPDATE_INTERVAL=200;
 const EXPIRE_REDIRECT='tiket.html';
 const NEXT_PAGE='success.html';
 const KEYS={order:'commvaganza_order_id',sign:'commvaganza_order_sign',receipt:'commvaganza_payment_receipt'};
 const MAX_FILE_SIZE=10*1024*1024;
 const ALLOWED_TYPES=['image/jpeg','image/png'];
-const CHECK_SVG='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>';
+const CHECK_SVG='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#ic-check"/></svg>';
 
 function padZero(n){return n<10?'0'+n:String(n)}
 function formatTime(sec){return padZero(Math.floor(sec/60))+':'+padZero(Math.floor(sec%60))}
@@ -374,12 +373,14 @@ const banner=document.querySelector('.banner-img');
 if(banner)banner.addEventListener('error',()=>{banner.style.display='none'});
 
 const order=safeJSON(localStorage.getItem('data_pemesan'),{});
-const cart=order.cart||{};
+const cart=(order&&order.cart)||{};
 const qty=Math.max(0,Math.floor(Number(cart.qty)||0));
 const harga=Math.max(0,Math.floor(Number(cart.harga)||0));
 let total=Number(cart.totalPrice);
 if(!Number.isFinite(total))total=qty*harga;
 const totalStr=formatRupiah(total);
+
+if(!qty)location.replace(EXPIRE_REDIRECT);
 
 document.getElementById('total').textContent=totalStr;
 document.getElementById('qrisTotalAmount').textContent=totalStr;
@@ -397,7 +398,7 @@ try{
     localStorage.setItem(KEYS.order,orderId);
     localStorage.setItem(KEYS.sign,currentSign);
   }
-}catch(e){}
+}catch(_){}
 document.getElementById('orderId').textContent=orderId;
 
 const timerEl=document.getElementById('timer');
@@ -411,7 +412,7 @@ function tick(){
   timerEl.classList.toggle('urgent',remain<=30&&remain>0);
   if(remain<=0){
     clearInterval(timerInterval);
-    location.href=EXPIRE_REDIRECT;
+    location.replace(EXPIRE_REDIRECT);
     return;
   }
   remain--;
@@ -453,7 +454,7 @@ fileInput.addEventListener('change',()=>{
   }
 
   uploaded=true;
-  try{localStorage.setItem(KEYS.receipt,file.name)}catch(e){}
+  try{localStorage.setItem(KEYS.receipt,file.name)}catch(_){}
   previewBox.hidden=false;
   if(previewImg.src.startsWith('blob:'))URL.revokeObjectURL(previewImg.src);
   previewImg.src=URL.createObjectURL(file);
@@ -487,6 +488,32 @@ const stepEls=[...document.querySelectorAll('.step-item')];
 const totalLabel=formatTime(LOADING_DURATION/1000);
 timeEl.textContent='00:00 / '+totalLabel;
 
+function setStepDone(el){
+  el.classList.remove('active');
+  el.classList.add('done');
+  const icon=el.querySelector('.step-icon');
+  if(!icon.dataset.done){icon.innerHTML=CHECK_SVG;icon.dataset.done='1'}
+}
+
+function renderLoading(p,elapsedSec){
+  const pct=Math.floor(p*100);
+  ring.style.strokeDashoffset=CIRC*(1-p);
+  ringNum.textContent=pct;
+  bar.style.width=pct+'%';
+  timeEl.textContent=formatTime(elapsedSec)+' / '+totalLabel;
+  subtitleEl.textContent=SUBTITLES[Math.min(Math.floor(p*SUBTITLES.length),SUBTITLES.length-1)];
+
+  const active=Math.min(Math.floor(p*stepEls.length),stepEls.length-1);
+  stepEls.forEach((el,i)=>{
+    if(i<active){
+      setStepDone(el);
+    }else if(i===active){
+      el.classList.remove('done');
+      el.classList.add('active');
+    }
+  });
+}
+
 function startLoading(){
   if(isProcessing)return;
   isProcessing=true;
@@ -497,43 +524,29 @@ function startLoading(){
   document.body.classList.add('no-scroll');
 
   const start=Date.now();
+  let lastRender=0;
 
-  function frame(){
-    const p=Math.min((Date.now()-start)/LOADING_DURATION,1);
-    const pct=Math.floor(p*100);
+  renderLoading(0,0);
 
-    ring.style.strokeDashoffset=CIRC*(1-p);
-    ringNum.textContent=pct;
-    bar.style.width=pct+'%';
-    timeEl.textContent=formatTime(Math.floor((Date.now()-start)/1000))+' / '+totalLabel;
-    subtitleEl.textContent=SUBTITLES[Math.min(Math.floor(p*SUBTITLES.length),SUBTITLES.length-1)];
+  function frame(now){
+    const elapsed=Date.now()-start;
+    const p=Math.min(elapsed/LOADING_DURATION,1);
 
-    const active=Math.min(Math.floor(p*stepEls.length),stepEls.length-1);
-    stepEls.forEach((el,i)=>{
-      const icon=el.querySelector('.step-icon');
-      if(i<active){
-        el.classList.remove('active');
-        el.classList.add('done');
-        if(icon.innerHTML!==CHECK_SVG)icon.innerHTML=CHECK_SVG;
-      }else if(i===active){
-        el.classList.remove('done');
-        el.classList.add('active');
-      }
-    });
-
-    if(p<1){
-      requestAnimationFrame(frame);
-    }else{
-      stepEls.forEach(el=>{
-        el.classList.remove('active');
-        el.classList.add('done');
-        el.querySelector('.step-icon').innerHTML=CHECK_SVG;
-      });
+    if(p>=1){
+      renderLoading(1,LOADING_DURATION/1000);
+      stepEls.forEach(setStepDone);
       ringNum.textContent=100;
       bar.style.width='100%';
       subtitleEl.textContent='Pembayaran berhasil dikonfirmasi!';
       setTimeout(()=>{location.href=NEXT_PAGE},1000);
+      return;
     }
+
+    if(now-lastRender>=DOM_UPDATE_INTERVAL){
+      lastRender=now;
+      renderLoading(p,Math.floor(elapsed/1000));
+    }
+    requestAnimationFrame(frame);
   }
   requestAnimationFrame(frame);
 }
