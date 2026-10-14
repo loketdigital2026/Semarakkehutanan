@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<meta name="description" content="Pilih tiket Semarak Kehutanan 2026 — Presale Festival & Tribune. Dapatkan tiket terbaikmu sebelum habis!">
+<meta name="theme-color" content="#ffffff">
+<meta property="og:title" content="Pilih Tiket — Semarak Kehutanan 2026">
+<meta property="og:description" content="Presale 2 Festival Rp 85.000 • Presale 2 Tribune Rp 75.000 • Presale Festival Rp 78.000">
+<meta property="og:type" content="website">
+<title>Pilih Tiket — Semarak Kehutanan 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎫</text></svg>">
+<style>
+:root{
+  --primary:#2b3fd0;--primary-dark:#20309f;--primary-soft:#e8ecfb;
+  --text:#141824;--text-soft:#3c4354;--muted:#8d93a0;
+  --bg:#eef1ec;--border:#e3e6e0;
+  --red:#dc2626;--red-soft:#fdecec;--green:#16a34a;--green-soft:#e3f5e9;
+  --radius:14px;--ease:cubic-bezier(.4,0,.2,1);
+  --topbar-h:64px;
+  --shadow-sm:0 1px 3px rgba(20,24,36,.07);
+  color-scheme:light;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+button,input{-webkit-tap-highlight-color:transparent;font-family:inherit}
+body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',Arial,Helvetica,sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;min-height:100vh}
+.app{max-width:720px;margin:0 auto;min-height:100vh;padding-bottom:132px;position:relative;background:var(--bg);box-shadow:0 0 60px rgba(20,24,36,.06)}
+.topbar{position:sticky;top:0;z-index:30;height:var(--topbar-h);display:flex;align-items:center;gap:8px;padding:0 18px;background:#fff;border-bottom:1px solid #ececec}
+.back{border:0;background:none;padding:0;width:42px;height:42px;margin-left:-8px;display:grid;place-items:center;color:var(--text);cursor:pointer;border-radius:10px;transition:background .2s var(--ease)}
+.topbar h1{margin:0;font-size:23px;font-weight:800;letter-spacing:-.01em}
+.fomo-banner{position:sticky;top:var(--topbar-h);z-index:15;display:flex;align-items:center;justify-content:center;gap:10px;padding:11px 16px;background:var(--red);color:#fff;font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;box-shadow:0 4px 14px rgba(220,38,38,.25)}
+.fomo-banner .dot{width:8px;height:8px;border-radius:50%;background:#fff;animation:pulse 1.6s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.coupon{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:13px 20px;background:#fff;border-bottom:1px solid var(--border);font-size:13.5px;color:var(--text-soft)}
+.coupon>svg{width:16px;height:16px;color:var(--primary);flex:none}
+.coupon-link{border:0;background:none;padding:0;font:inherit;color:var(--primary);font-weight:700;cursor:pointer;text-decoration:underline;text-underline-offset:2px}
+.coupon-form{display:flex;gap:8px;flex:1 1 100%;margin-top:4px}
+.coupon-form[hidden]{display:none}
+.coupon-input{flex:1;min-width:0;border:1px solid var(--border);border-radius:10px;padding:10px 12px;font:inherit;font-weight:600;background:#fff;color:var(--text)}
+.coupon-input:focus-visible{outline:2px solid var(--primary);outline-offset:1px}
+.coupon-apply{border:0;border-radius:10px;padding:10px 16px;background:var(--primary);color:#fff;font-size:14px;font-weight:800;cursor:pointer;transition:background .2s var(--ease)}
+.coupon-applied{font-weight:700;color:var(--green)}
+.info-box{margin:20px 20px 0;padding:14px;display:flex;align-items:center;gap:12px;background:var(--primary-soft);border:1px solid #ccd5f5;border-radius:12px;font-size:13px;line-height:1.55;font-weight:600;color:var(--text-soft)}
+.info-icon{width:36px;height:36px;border-radius:10px;background:#fff;display:grid;place-items:center;color:var(--primary);flex:none;box-shadow:var(--shadow-sm)}
+.info-icon svg{width:18px;height:18px}
+.ticket-list{padding:18px 20px 8px;display:grid;gap:16px}
+.ticket-card{background:#fff;border:1.5px solid var(--border);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow-sm)}
+.ticket-card.sold-out{background:#f6f7f4;border-style:dashed;border-color:#c9cec7}
+.ticket-card.selected{border-color:var(--primary);box-shadow:0 6px 18px rgba(43,63,208,.14)}
+.ticket-header{display:flex;justify-content:space-between;align-items:flex-start;gap:14px}
+.ticket-info h3{font-size:16.5px;font-weight:800;letter-spacing:-.01em;margin:0 0 3px}
+.ticket-price{font-size:14.5px;font-weight:700;color:var(--primary-dark)}
+.status-badge{flex:none;display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:999px;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.05em}
+.status-sold{background:var(--red-soft);color:var(--red)}
+.status-available{background:var(--green-soft);color:var(--green)}
+.status-available::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s ease-in-out infinite}
+.ticket-description{margin-top:10px;font-size:13.5px;line-height:1.6;color:var(--text-soft)}
+.ticket-description .desc-title{font-weight:800;color:var(--text);margin-bottom:2px}
+.select-ticket-area{margin-top:14px}
+.select-ticket-btn{width:100%;border:0;border-radius:10px;padding:12px;background:var(--primary);color:#fff;font-size:15px;font-weight:800;cursor:pointer;transition:background .2s var(--ease)}
+.select-ticket-btn[hidden]{display:none}
+.quantity-picker{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 12px;border:1.5px solid #ccd5f5;border-radius:10px;background:var(--primary-soft)}
+.quantity-picker[hidden]{display:none}
+.quantity-label{font-size:13px;font-weight:700;color:var(--text-soft)}
+.quantity-controls{display:flex;align-items:center;gap:10px}
+.qty-btn{width:34px;height:34px;border:0;border-radius:9px;background:#fff;color:var(--primary);font-size:18px;font-weight:800;line-height:1;cursor:pointer;display:grid;place-items:center;transition:background .2s var(--ease),color .2s var(--ease)}
+.qty-btn:disabled{opacity:.35;cursor:not-allowed}
+.qty-number{min-width:28px;text-align:center;font-size:15px;font-weight:800;color:var(--text)}
+.bottom{position:fixed;left:50%;transform:translateX(-50%);bottom:0;width:min(720px,100%);background:#fff;border-top:1px solid #e9ebe6;padding:12px 16px;padding-bottom:max(14px,env(safe-area-inset-bottom));z-index:40;box-shadow:0 -6px 24px rgba(20,24,36,.06)}
+.checkout-btn{width:100%;height:52px;border:0;border-radius:12px;background:#e2e5df;color:#9aa0ac;font-size:17px;font-weight:800;cursor:not-allowed;display:flex;align-items:center;justify-content:center;gap:8px;transition:background .2s var(--ease),transform .2s var(--ease),box-shadow .2s var(--ease)}
+.checkout-btn.active{background:var(--primary);color:#fff;cursor:pointer}
+.checkout-btn.active:active{transform:scale(.99)}
+.checkout-btn svg{width:18px;height:18px}
+.back:focus-visible,.qty-btn:focus-visible,.select-ticket-btn:focus-visible,.coupon-apply:focus-visible,.checkout-btn:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
+@media (hover:hover){
+  .back:hover{background:#f1f2ee}
+  .coupon-link:hover{color:var(--primary-dark)}
+  .coupon-apply:hover,.select-ticket-btn:hover{background:var(--primary-dark)}
+  .qty-btn:not(:disabled):hover{background:var(--primary);color:#fff}
+  .checkout-btn.active:hover{background:var(--primary-dark);box-shadow:0 8px 20px rgba(43,63,208,.35)}
+}
+@media (max-width:600px){
+  :root{--topbar-h:58px}
+  .topbar h1{font-size:20px}
+  .coupon{padding:12px 14px;font-size:12.5px}
+  .info-box{margin:16px 14px 0}
+  .ticket-list{padding:16px 14px 8px;gap:14px}
+  .ticket-card{padding:15px}
+  .ticket-info h3{font-size:15.5px}
+  .checkout-btn{height:48px;font-size:16px}
+  .app{padding-bottom:118px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.01ms!important;transition-duration:.01ms!important}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <button class="back" id="back" type="button" aria-label="Kembali ke halaman sebelumnya">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    </button>
+    <h1>Pilih Tiket</h1>
+  </header>
+
+  <div class="fomo-banner">
+    <span class="dot" aria-hidden="true"></span>
+    <span>Tiket Tersisa 9 Lagi</span>
+    <span class="dot" aria-hidden="true"></span>
+  </div>
+
+  <div class="coupon">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12V8H4v4M20 12v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-4M20 12h-4a2 2 0 0 0 0 4h4"/></svg>
+    <span>Punya kode kupon? Masukkan <button type="button" class="coupon-link" id="couponToggle" aria-expanded="false" aria-controls="couponForm">disini</button></span>
+    <div class="coupon-form" id="couponForm" hidden>
+      <input class="coupon-input" id="couponInput" type="text" placeholder="Tulis kode kupon" aria-label="Kode kupon">
+      <button type="button" class="coupon-apply" id="couponApply">Terapkan</button>
+    </div>
+    <span class="coupon-applied" id="couponApplied" hidden></span>
+  </div>
+
+  <div class="info-box">
+    <div class="info-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    </div>
+    <div>Informasi ketersediaan mengikuti status yang ditampilkan pada setiap kategori tiket.</div>
+  </div>
+
+  <section class="ticket-list" aria-label="Daftar tiket Semarak Kehutanan 2026">
+    <article class="ticket-card sold-out">
+      <div class="ticket-header">
+        <div class="ticket-info">
+          <h3>Semarak Duo - Tribune</h3>
+          <div class="ticket-price">Rp 20.000</div>
+        </div>
+        <div class="status-badge status-sold">Habis</div>
+      </div>
+      <div class="ticket-description">
+        <p class="desc-title">🎟️ Tribune Ticket — Semarak Duo</p>
+        <p>Dapatkan akses untuk 2 orang ke seluruh rangkaian</p>
+      </div>
+    </article>
+    <article class="ticket-card sold-out">
+      <div class="ticket-header">
+        <div class="ticket-info">
+          <h3>Semarak Solo - Tribune</h3>
+          <div class="ticket-price">Rp 25.000</div>
+        </div>
+        <div class="status-badge status-sold">Habis</div>
+      </div>
+      <div class="ticket-description">
+        <p class="desc-title">🎟️ Tribune Ticket — Semarak Solo</p>
+        <p>Dapatkan akses ke seluruh rangkaian</p>
+      </div>
+    </article>
+    <article class="ticket-card sold-out">
+      <div class="ticket-header">
+        <div class="ticket-info">
+          <h3>Semarak Duo</h3>
+          <div class="ticket-price">Rp 25.000</div>
+        </div>
+        <div class="status-badge status-sold">Habis</div>
+      </div>
+      <div class="ticket-description">
+        <p class="desc-title">🎟️ Festival Ticket — Semarak Duo</p>
+        <p>Dapatkan akses untuk 2 orang ke seluruh rangkaian Puncak Kemekar Semarak</p>
+      </div>
+    </article>
+    <article class="ticket-card sold-out">
+      <div class="ticket-header">
+        <div class="ticket-info">
+          <h3>Semarak Ramai</h3>
+          <div class="ticket-price">Rp 20.000</div>
+        </div>
+        <div class="status-badge status-sold">Habis</div>
+      </div>
+      <div class="ticket-description">
+        <p class="desc-title">🎟️ Festival Ticket — Semarak Ramai</p>
+        <p>Dapatkan akses untuk 5 orang ke seluruh rangkaian</p>
+      </div>
+    </article>
+    <article class="ticket-card sold-out">
+      <div class="ticket-header">
+        <div class="ticket-info">
+          <h3>Semarak Solo</h3>
+          <div class="ticket-price">Rp 30.000</div>
+        </div>
+        <div class="status-badge status-sold">Habis</div>
+      </div>
+      <div class="ticket-description">
+        <p class="desc-title">🎟️ Festival Ticket — Semarak Solo</p>
+        <p>Dapatkan akses ke seluruh rangkaian</p>
+      </div>
+    </article>
+    <article class="ticket-card selectable-ticket" data-ticket="Presale 2 - Festival" data-price="85000">
+      <div class="ticket-header">
+        <div class="ticket-info">
+          <h3>Presale 2 - Festival</h3>
+          <div class="ticket-price">Rp 85.000</div>
+        </div>
+        <div class="status-badge status-available">Tersedia</div>
+      </div>
+      <div class="ticket-description">
+        <p class="desc-title">🎟️ Festival Ticket</p>
+        <p>Dapatkan akses ke seluruh rangkaian Puncak</p>
+      </div>
+      <div class="select-ticket-area">
+        <button type="button" class="select-ticket-btn" data-action="select">Pilih Tiket</button>
+        <div class="quantity-picker" hidden>
+          <span class="quantity-label">Jumlah tiket</span>
+          <div class="quantity-controls">
+            <button type="button" class="qty-btn" data-action="minus" aria-label="Kurangi jumlah tiket">−</button>
+            <output class="qty-number" aria-live="polite">1</output>
+            <button type="button" class="qty-btn" data-action="plus" aria-label="Tambah jumlah tiket">+</button>
+          </div>
+        </div>
+      </div>
+    </article>
+    <article class="ticket-card selectable-ticket" data-ticket="Presale 2 - Tribune" data-price="75000">
+      <div class="ticket-header">
+        <div class="ticket-info">
+          <h3>Presale 2 - Tribune</h3>
+          <div class="ticket-price">Rp 75.000</div>
+        </div>
+        <div class="status-badge status-available">Tersedia</div>
+      </div>
+      <div class="ticket-description">
+        <p class="desc-title">🎟️ Tribune Ticket</p>
+        <p>Dapatkan akses ke seluruh rangkaian Puncak</p>
+      </div>
+      <div class="select-ticket-area">
+        <button type="button" class="select-ticket-btn" data-action="select">Pilih Tiket</button>
+        <div class="quantity-picker" hidden>
+          <span class="quantity-label">Jumlah tiket</span>
+          <div class="quantity-controls">
+            <button type="button" class="qty-btn" data-action="minus" aria-label="Kurangi jumlah tiket">−</button>
+            <output class="qty-number" aria-live="polite">1</output>
+            <button type="button" class="qty-btn" data-action="plus" aria-label="Tambah jumlah tiket">+</button>
+          </div>
+        </div>
+      </div>
+    </article>
+    <article class="ticket-card selectable-ticket" data-ticket="Presale - Festival" data-price="78000">
+      <div class="ticket-header">
+        <div class="ticket-info">
+          <h3>Presale - Festival</h3>
+          <div class="ticket-price">Rp 78.000</div>
+        </div>
+        <div class="status-badge status-available">Tersedia</div>
+      </div>
+      <div class="ticket-description">
+        <p class="desc-title">🎟️ Festival Ticket</p>
+        <p>Dapatkan akses ke seluruh rangkaian Puncak</p>
+      </div>
+      <div class="select-ticket-area">
+        <button type="button" class="select-ticket-btn" data-action="select">Pilih Tiket</button>
+        <div class="quantity-picker" hidden>
+          <span class="quantity-label">Jumlah tiket</span>
+          <div class="quantity-controls">
+            <button type="button" class="qty-btn" data-action="minus" aria-label="Kurangi jumlah tiket">−</button>
+            <output class="qty-number" aria-live="polite">1</output>
+            <button type="button" class="qty-btn" data-action="plus" aria-label="Tambah jumlah tiket">+</button>
+          </div>
+        </div>
+      </div>
+    </article>
+  </section>
+</div>
+
+<div class="bottom">
+  <button type="button" id="checkoutButton" class="checkout-btn" disabled aria-label="Checkout">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+    Checkout
+  </button>
+</div>
+
+<script>
+const MAX_QTY=10;
+const ticketCards=[...document.querySelectorAll('.selectable-ticket')];
+const checkoutButton=document.getElementById('checkoutButton');
+const selections=new Map();
+
+function refreshCheckout(){
+  let count=0;
+  ticketCards.forEach(c=>{count+=selections.get(c.dataset.ticket)||0});
+  checkoutButton.disabled=count===0;
+  checkoutButton.classList.toggle('active',count>0);
+  checkoutButton.setAttribute('aria-label',count?`Checkout ${count} tiket`:'Checkout');
+}
+
+function syncCard(card){
+  const qty=selections.get(card.dataset.ticket)||0;
+  card.querySelector('.qty-number').textContent=String(qty);
+  card.querySelector('[data-action="plus"]').disabled=qty>=MAX_QTY;
+}
+
+ticketCards.forEach(card=>{
+  const selectButton=card.querySelector('[data-action="select"]');
+  const picker=card.querySelector('.quantity-picker');
+  card.querySelector('[data-action="minus"]').addEventListener('click',()=>{
+    const next=Math.max(0,(selections.get(card.dataset.ticket)||0)-1);
+    selections.set(card.dataset.ticket,next);
+    syncCard(card);
+    if(next===0){picker.hidden=true;selectButton.hidden=false;card.classList.remove('selected');}
+    refreshCheckout();
+  });
+  card.querySelector('[data-action="plus"]').addEventListener('click',()=>{
+    const next=Math.min(MAX_QTY,(selections.get(card.dataset.ticket)||0)+1);
+    selections.set(card.dataset.ticket,next);
+    syncCard(card);
+    refreshCheckout();
+  });
+  selectButton.addEventListener('click',()=>{
+    selections.set(card.dataset.ticket,1);
+    syncCard(card);
+    selectButton.hidden=true;
+    picker.hidden=false;
+    card.classList.add('selected');
+    refreshCheckout();
+  });
+});
+
+checkoutButton.addEventListener('click',()=>{
+  const chosen=ticketCards.filter(c=>(selections.get(c.dataset.ticket)||0)>0);
+  const count=chosen.reduce((s,c)=>s+selections.get(c.dataset.ticket),0);
+  const total=chosen.reduce((s,c)=>s+Number(c.dataset.price)*selections.get(c.dataset.ticket),0);
+  const items=chosen.map(c=>({nama:c.dataset.ticket,jumlah:selections.get(c.dataset.ticket),harga:Number(c.dataset.price)}));
+  try{
+    localStorage.setItem('jumlahTiket',String(count));
+    localStorage.setItem('kategoriTiket',items.map(i=>`${i.nama} x${i.jumlah}`).join(', '));
+    localStorage.setItem('hargaTiket',String(Math.round(total/count)));
+    localStorage.setItem('detailPilihanTiket',JSON.stringify(items));
+  }catch(e){}
+  location.href='form.html';
+});
+
+const couponToggle=document.getElementById('couponToggle');
+const couponForm=document.getElementById('couponForm');
+const couponInput=document.getElementById('couponInput');
+const couponApply=document.getElementById('couponApply');
+const couponApplied=document.getElementById('couponApplied');
+couponToggle.addEventListener('click',()=>{
+  const open=couponForm.hidden;
+  couponForm.hidden=!open;
+  couponToggle.setAttribute('aria-expanded',String(open));
+  if(open)couponInput.focus();
+});
+couponApply.addEventListener('click',()=>{
+  const code=couponInput.value.trim();
+  if(!code){couponInput.focus();return;}
+  try{localStorage.setItem('kodeKupon',code)}catch(e){}
+  couponApplied.textContent=`Kupon "${code.toUpperCase()}" diterapkan`;
+  couponApplied.hidden=false;
+  couponForm.hidden=true;
+  couponToggle.textContent='ubah';
+});
+couponInput.addEventListener('keydown',e=>{if(e.key==='Enter')couponApply.click()});
+
+document.getElementById('back').addEventListener('click',()=>{
+  if(history.length>1)history.back();else location.href='index.html';
+});
+
+refreshCheckout();
+</script>
+</body>
+</html>
